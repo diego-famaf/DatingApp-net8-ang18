@@ -1,0 +1,50 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">Tu Cita</a>
+      
+      @if(accountService.currentUser())
+      {
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item">
+            <a class="nav-link">Coincidencias</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">Listas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">Mensajes</a>
+          </li>
+        </ul>
+      }
+
+      @if(accountService.currentUser())
+      {
+        
+        <div dropdown class="dropdown">
+          <a dropdownToggle class="dropdown-toggle text-light text-decoration-none">Ingresaste user</a>
+          <div *dropdownMenu class="dropdown-menu">
+            <a class="dropdown-item">Editar Perfil</a>
+            <a class="dropdown-item" (click)="logout()">Salir</a>
+          </div>
+        </div>
+      }
+
+      @if(!accountService.currentUser())
+      {
+        <form #loginForm = "ngForm" (ngSubmit) = login() class = "d-flex" autocomplete="off">
+          <input name="username" 
+                [(ngModel)]="model.username"
+                class="form-control me-2" 
+                placeholder="Nombre de Usuario">
+          <input name="username"
+                [(ngModel)]="model.password"
+                class="form-control me-2"
+                placeholder="Contraseña"
+                type="contraseña">
+          <button class="btn btn-outline-success"
+                  type="submit">Ingresar
+          </button>
+        </form>
+      }        
+    </div>   
+</nav>
