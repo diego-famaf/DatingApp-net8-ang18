@@ -1,0 +1,19 @@
+<h4>Error Interno de Servidor</h4>
+@if (error) {
+    <h5 class="text-danger">Error: {{error.message}}</h5>
+    <p class="font-weight-bold">Nota: Si tu estas viendo este error, entonces no es culpa de angular</p>
+    <p>Que es lo proximo a hacer?</p>
+
+    <ol>
+        <li>Abrir la herramienta para desarrolladores en chrome y verifica la solicitud de red caida en la pestaña red</li>
+        <li>Examina la URL de la solicitud caida</li>
+        <li>Reproduce el error en Postman - Si tu puedes reproducir el error , entonces Angular no es el culpable</li>
+    </ol>
+
+    <p class="font-weight-bold">Siguiendo la pila de rastreo - verifica las dos primeras lineas
+         que indican exactamente que linea de código causó el problema!</p>
+
+    <code class="mt-5" style="background-color: black;">
+        {{error.details}}
+    </code>
+}
