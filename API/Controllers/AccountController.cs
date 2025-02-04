@@ -18,7 +18,8 @@ public class AccountController(DataContext context, ITokenService tokenService) 
     {
         if (await UserExists(registerDto.Username)) return BadRequest("El nombre de usuario ya está tomado");
         
-        using var hmac = new HMACSHA512();
+        return Ok();
+        /* using var hmac = new HMACSHA512();
         var user = new AppUser
         {
             UserName = registerDto.Username.ToLower(),
@@ -33,7 +34,7 @@ public class AccountController(DataContext context, ITokenService tokenService) 
         {
             Username = user.UserName,
             Token = tokenService.CreateToken(user)
-        };
+        }; */
     }
 
     [HttpPost("login")]
