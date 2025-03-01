@@ -28,7 +28,7 @@
             Ingresaste {{accountService.currentUser()?.username | titlecase}}
           </a>
           <div *dropdownMenu class="dropdown-menu">
-            <a class="dropdown-item">Editar Perfil</a>
+            <a routerLink="/miembro/editar" class="dropdown-item">Editar Perfil</a>
             <a class="dropdown-item" (click)="logout()">Salir</a>
           </div>
         </div>
