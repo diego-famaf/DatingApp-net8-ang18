@@ -1,31 +1,70 @@
-<form #registerForm="ngForm" (ngSubmit)="register()" autocomplete="off">
+<form [formGroup]="registerForm" (ngSubmit)="register()" autocomplete="off">
     <h2 class="text-center text-primary">Inscribirse</h2>
     <hr>
-    <div class="mb-3 form-floating">
-        <input 
-            type="text"
-            class="form-control"
-            name="username"
-            [(ngModel)]="model.username"
-            placeholder="Nombre de Usuario"
-        >
-        <label>Usuario</label>
-    </div>
 
-    <div class="mb-3 form-floating">
-        <input 
-            type="password"
-            class="form-control"
-            name="password"
-            [(ngModel)]="model.password"
-            placeholder="Contraseña"
-        >
-        <label>Contraseña</label>
+    <div class="mb-3">
+        <label style="margin-right: 10px;">Yo soy:</label>
+        <label class="form-check-label">
+            <input type="radio" class="form-check-input" value="masculino" formControlName="gender">Hombre
+        </label>
+        <label class="form-check-label">
+            <input type="radio" class="form-check-input" value="femenino" formControlName="gender">Mujer
+        </label>
     </div>
+    <app-text-input
+        [formControl] = "$any(registerForm.controls['username'])"
+        [label]="'Nombre de Usuario'"
+    ></app-text-input>
+
+    <app-text-input
+        [formControl] = "$any(registerForm.controls['knownAs'])"
+        [label]="'Conocido como'"
+    ></app-text-input>
+
+    <app-date-picker
+        [formControl] = "$any(registerForm.controls['dateOfBirth'])"
+        [label]="'Fecha de Nacimiento'" [maxDate]="maxDate"
+    ></app-date-picker>
+
+    <app-text-input
+        [formControl] = "$any(registerForm.controls['city'])"
+        [label]="'Ciudad'"
+    ></app-text-input>
+
+    <app-text-input
+        [formControl] = "$any(registerForm.controls['country'])"
+        [label]="'Pais'"
+    ></app-text-input>
+
+    <app-text-input
+        [formControl] = "$any(registerForm.controls['password'])"
+        [label]="'Contraseña'"
+        [type]="'password'"
+    ></app-text-input>
+
+    <app-text-input
+        [formControl] = "$any(registerForm.controls['confirmPassword'])"
+        [label]="'Confirmar contraseña'"
+        [type]="'password'"
+    ></app-text-input>
+
+    @if (validationErrors) {
+        <div class="alert alert-danger text-start">
+            <ul>
+                @for (error of validationErrors; track $index) {
+                    <li>{{error}}</li>
+                }
+            </ul>
+        </div>
+    }
+
     <div class="form-group text-center">
-        <button class="btn btn-succes me-2" type="submit">Registrarse</button>
+        <button [disabled]="!registerForm.valid" class="btn btn-succes me-2" type="submit">Registrarse</button>
         <button class="btn btn-default me-2" (click)="cancel()" type="button">Cancelar</button>
     </div>
 </form>
+
+
+
 
 
